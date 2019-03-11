@@ -5,9 +5,12 @@ Since uploading large data sets handicaps the server to process further requests
 
 ## Technology stack:
 - Python
-- RabbitMQ(Celery)
 - Flask
+- RabbitMQ
+- Celery
 - SQL
+- Docker
+- Docker-Compose
 
 ## Demonstration:
 - Call deprecated insert endpoint at *‘/dpd_insert/<num>’* where num is an optional parameter to specify the number of rows of random data to be inserted(if not specified num = 100000). Observe that this would handicap the server until the insertion is complete and would not allow the server to service other requests.
