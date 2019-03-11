@@ -1,0 +1,28 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    links:
+      - database
+      - broker
+    depends_on:
+      - database
+      - broker
+    command: ["./start_app.sh"]
+    ports:
+      - "5000:5000"
+    restart: always
+  database:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: pw1234
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/:ro
+    restart: always
+  broker:
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+    restart: always
